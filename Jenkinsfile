@@ -1,28 +1,20 @@
 pipeline {
     agent any
-    environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE = 'sqlite'
-    }
     stages {
-        stage('No-op') {
+        stage('Build') {
             steps {
-                sh 'ls'
+                echo 'Building'
             }
         }
-    }
-    post {
-        always {
-            echo 'One way or another, I have finished'
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
         }
-        success {
-            echo 'I succeeded!'
-        }
-        failure {
-            echo 'I failed :('
-        }
-        changed {
-            echo 'Things were different before...'
+        stage('Deploy') {
+            steps {
+                echo 'Deploying'
+            }
         }
     }
 }

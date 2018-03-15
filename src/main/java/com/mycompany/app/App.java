@@ -10,8 +10,10 @@ public class App
 
     public App() {}
 
-    public static void main(String[] args) {
-        System.out.println(new App().getMessage());
+    public static void main(String[] args) throws Exception{
+        System.out.println(System.currentTimeMillis());
+        Thread.sleep(1000);
+        System.out.println(System.currentTimeMillis());
     }
 
     private final String getMessage() {

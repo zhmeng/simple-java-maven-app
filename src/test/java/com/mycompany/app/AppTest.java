@@ -30,7 +30,7 @@ public class AppTest
     }
 
     @Test
-    public void testAppMain()
+    public void testAppMain() throws Exception
     {
         App.main(null);
         try {

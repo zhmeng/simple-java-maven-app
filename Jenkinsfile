@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-
+                ehco "it's a test.."
             }
         }
         stage('Sanity check') {

@@ -1,12 +1,9 @@
 pipeline {
     agent any
-    environment {
-        VERSION = readMavenPom().getVersion()
-    }
     stages {
-        stage("Echo") {
+        stage('Say Hello') {
             steps {
-                echo "HELLO"
+                echo 'Hello World!'
             }
         }
     }

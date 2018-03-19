@@ -9,7 +9,13 @@ pipeline {
             }
             steps {
                 echo "Origin Master - Master Branch!"
+                bat 'git branch'
             }
         }
     }
+    parallel(
+        "Deploy First Module" : { stage("Deploy") { } },
+        "Deploy Second Module" : { stage("Deploy") { } },
+        "Deploy Third Module" : { stage("Deploy") { } },
+    )
 }

@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building'
-                sh 'printenv'
+                bat 'echo %PATH%'
             }
         }
         stage('Test') {

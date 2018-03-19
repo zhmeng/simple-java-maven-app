@@ -5,25 +5,28 @@ pipeline {
         DB_ENGINE = 'sqlite'
     }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building'
-                bat 'echo %PATH%'
+        stages {
+            stage('No-op') {
+                steps {
+                    bat 'dir'
+                }
             }
         }
-        stage('Test') {
-            steps {
-                echo "it's a test.."
+        post {
+            always {
+                echo 'One way or another, I hava finished'
             }
-        }
-        stage('Sanity check') {
-            steps {
-                input "Does the staging environment look ok?"
+            success {
+                echo 'I successed!'
             }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying'
+            unstable {
+                echo 'I am unstable!'
+            }
+            failure {
+                echo 'I failure :('
+            }
+            changed {
+                echo 'Things were different before ...'
             }
         }
     }

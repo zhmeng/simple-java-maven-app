@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Non-Parallel Stage') {
             steps {
-                echo 'This stage will be executed first.'
+                echo 'zc.' + env.BRANCH_NAME
             }
         }
         stage('Parallel Stage') {

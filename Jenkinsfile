@@ -8,12 +8,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building'
-                echo '%PATH%'
+                sh 'printenv'
             }
         }
         stage('Test') {
             steps {
-                ehco "it's a test.."
+                echo "it's a test.."
             }
         }
         stage('Sanity check') {

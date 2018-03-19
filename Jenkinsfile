@@ -19,7 +19,7 @@ pipeline {
                         echo "On Branch A"
                     }
                 }
-                stage("Branch B") {
+                stage('Branch B') {
                     agent {
                         label "for-branch-b"
                     }

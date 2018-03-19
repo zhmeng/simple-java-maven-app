@@ -17,7 +17,7 @@ pipeline {
         stage('WHEN EXPRESSION with AND') {
             when {
                 expression {
-                    VALUE_ONE = '1' && VALUE_THREE == '3'
+                    VALUE_ONE == '1' && VALUE_THREE == '3'
                 }
             }
             steps {

@@ -12,5 +12,10 @@ pipeline {
                 bat 'mvn -B -DskipTests clean package'
             }
         }
+        stage('Deliver') {
+            steps {
+                echo 'invoke deliver step.'
+            }
+        }
     }
 }

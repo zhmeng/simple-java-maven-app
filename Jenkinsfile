@@ -1,66 +1,33 @@
 pipeline {
     agent any
-    environment {
-        VALUE_ONE = '1'
-        VALUE_TWO = '2'
-        VALUE_THREE = '3'
-    }
     stages {
-        stage("BASIC WHEN - Branch") {
-            when {
-                not {
-                    branch 'master'
-                }
-            }
+        stage('Non-Parallel Stage') {
             steps {
-                echo 'BASIC WHEN - Master Branch!'
+                echo 'This stage will be executed first.'
             }
         }
-        stage('WHEN EXPRESSION with AND') {
+        stage('Parallel Stage') {
             when {
-                expression {
-                    VALUE_ONE == '1' && VALUE_THREE == '3'
-                }
+                branch 'master'
             }
-            steps {
-                echo "WHEN with AND expression works!"
-            }
-        }
-
-        stage('WHEN EXPRESSION with OR') {
-            when {
-                expression {
-                    VALUE_ONE == '1' || VALUE_THREE == '2'
-                }
-            }
-            steps {
-                echo "WHEN with OR expression works"
-            }
-        }
-
-        stage("AllOf") {
-            when {
-                allOf {
-                    environment name: 'VALUE_ONE', value: '1'
-                    environment name: 'VALUE_TWO', value:  '2'
-                }
-            }
-            steps {
-                echo "AllOf Works!!"
-            }
-        }
-
-        stage("Not AnyOf") {
-            when {
-                not {
-                    anyOf {
-                        branch "development"
-                        environment name:'VALUE_TWO', value: '4'
+            failFast true
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        label "for-branch-a"
+                    }
+                    steps {
+                        echo "On Branch A"
                     }
                 }
-            }
-            steps {
-                echo "Not AnyOf - Works!"
+                stage('Branch B') {
+                    agent {
+                        label "for-branch-b"
+                    }
+                    steps {
+                        echo "On Branch B"
+                    }
+                }
             }
         }
     }

@@ -1,20 +1,32 @@
 pipeline {
     agent any
     stages {
-        stage('Check') {
+        stage('Non-Parallel Stage') {
             steps {
-                bat 'java -version'
-                bat 'mvn -v'
+                echo 'This stage will be executed first.'
             }
         }
-        stage('Package') {
-            steps {
-                bat 'mvn -B -DskipTests clean package'
+        stage('Parallel Stage') {
+            when {
+                branch 'master'
             }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'invoke deliver step.'
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        label "for-branch-a"
+                    }
+                    steps {
+                        echo "On Branch A"
+                    }
+                }
+                stage("Branch B") {
+                    agent {
+                        label "for-branch-b"
+                    }
+                    steps {
+                        echo "On Branch B"
+                    }
+                }
             }
         }
     }

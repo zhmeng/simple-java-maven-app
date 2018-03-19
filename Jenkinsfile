@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Non-Parallel Stage') {
             steps {
-                echo 'zc.' + env.BRANCH_NAME
+                bat 'printenv'
             }
         }
         stage('Parallel Stage') {

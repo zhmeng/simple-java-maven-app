@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("Echo") {
             steps {
-                echo "$VERSION"
+                echo "HELLO"
             }
         }
     }

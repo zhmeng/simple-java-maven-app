@@ -1,17 +1,17 @@
 pipeline {
     agent any
     stages {
-        stage('Deploy') {
-            // Using 'agent none' so that the input step doesn't tie up an
-            // executor waiting for input, instead it will use a "light
-            // weight" process on the master
-            agent none
-            steps {
-                // Wrap the input step in a timeout so that Jenkins won't
-                // be left waiting for input forever...
-                timeout(time: 5, unit: 'MINUTES') {
-                    input 'Should I Deploy?'
+        stage('Example') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
                 }
+            }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
             }
         }
     }

@@ -5,11 +5,9 @@ pipeline {
         DB_ENGINE = 'sqlite'
     }
     stages {
-        stages {
-            stage('No-op') {
-                steps {
-                    bat 'dir'
-                }
+        stage('No-op') {
+            steps {
+                bat 'dir'
             }
         }
         post {

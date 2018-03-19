@@ -8,9 +8,7 @@ pipeline {
     stages {
         stage("BASIC WHEN - Branch") {
             when {
-                expression {
-                    branch  == 'master'
-                }
+                branch 'master'
             }
             steps {
                 echo 'BASIC WHEN - Master Branch!'

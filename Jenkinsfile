@@ -14,8 +14,20 @@ pipeline {
         }
     }
     parallel(
-        "Deploy First Module" : { stage("Deploy") { } },
-        "Deploy Second Module" : { stage("Deploy") { } },
-        "Deploy Third Module" : { stage("Deploy") { } },
+        "Deploy First Module" : { stage("Deploy") {
+            steps {
+                echo "First"
+            }
+        } },
+        "Deploy Second Module" : { stage("Deploy") {
+            steps {
+                echo "Second"
+            }
+        } },
+        "Deploy Third Module" : { stage("Deploy") {
+            steps {
+                echo "Third"
+            }
+        } },
     )
 }

@@ -4,27 +4,10 @@ pipeline {
         stage('Non-Parallel Stage') {
             steps {
                 echo 'This stage will be executed first.'
-            }
-        }
-        stage('Parallel Stage') {
-            when {
-                branch 'master'
-            }
-            parallel {
-                stage('Branch A') {
-                    agent {
-                        label "for-branch-a"
-                    }
-                    steps {
-                        echo "On Branch A"
-                    }
-                }
-                stage('Branch B') {
-                    agent {
-                        label "for-branch-b"
-                    }
-                    steps {
-                        echo "On Branch B"
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for(int i = 0; i < browsers.size() ; i++) {
+                        echo "Testing the ${browsers[i]} browser"
                     }
                 }
             }

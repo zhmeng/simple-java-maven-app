@@ -12,22 +12,26 @@ pipeline {
                 bat 'git branch'
             }
         }
+        stage("Testing") {
+            parallel {
+                stage("Unit Tests") {
+                    agent any
+                    steps {
+                        bat 'java -version'
+                    }
+                }
+                stage("Functional Tests") {
+                    agent any
+                    steps {
+                        bat 'java -version'
+                    }
+                }
+                stage("Integration Tests") {
+                    steps {
+                        bat 'java -version'
+                    }
+                }
+            }
+        }
     }
-    parallel(
-        "Deploy First Module" : { stage("Deploy") {
-            steps {
-                echo "First"
-            }
-        } },
-        "Deploy Second Module" : { stage("Deploy") {
-            steps {
-                echo "Second"
-            }
-        } },
-        "Deploy Third Module" : { stage("Deploy") {
-            steps {
-                echo "Third"
-            }
-        } },
-    )
 }

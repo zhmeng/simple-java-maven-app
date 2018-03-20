@@ -1,24 +1,34 @@
 pipeline {
     agent {
         node {
-            label 'one-label'
+            label 'for-branch-a'
             customWorkspace 'D:\\one'
         }
         node {
-            label 'two-label'
+            label 'for-branch-b'
             customWorkspace 'D:\\two'
         }
     }
-    stages {
-        stage('package') {
-            agent {
-                label 'one-label'
+    stage('Parallel Stage') {
+        when {
+            branch 'master'
+        }
+        failFast true
+        parallel {
+            stage('Branch A') {
+                agent {
+                    label "for-branch-a"
+                }
+                steps {
+                    echo "On Branch A"
+                }
             }
-            steps {
-                script {
-                    dir('xxx') {
-                        bat 'git clone https:@github.com:zhmeng/simple-java-maven-app.git'
-                    }
+            stage('Branch B') {
+                agent {
+                    label "for-branch-b"
+                }
+                steps {
+                    echo "On Branch B"
                 }
             }
         }

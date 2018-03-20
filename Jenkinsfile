@@ -6,6 +6,7 @@ pipeline {
                 script {
                     dir('hello') {
                         echo "make hello dir"
+                        bat 'dir'
                     }
                 }
             }

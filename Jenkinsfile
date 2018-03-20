@@ -1,8 +1,5 @@
 pipeline {
-    agent {
-        label 'for-branch-a'
-        customWorkspace 'D:\\one'
-    }
+    agent any
     stages {
         stage('hello') {
             steps {

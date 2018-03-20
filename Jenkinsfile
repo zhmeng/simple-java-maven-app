@@ -1,27 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('Non-Parallel Stage') {
+        stage("foo") {
             steps {
-                echo 'This stage will be executed first.'
-            }
-        }
-        stage('Parallel Stage') {
-            when {
-                branch 'master'
-            }
-            failFast true
-            parallel {
-                stage('Branch A') {
-                    steps {
-                        echo "On Branch A"
-                    }
+                script {
+                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
+                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
                 }
-                stage('Branch B') {
-                    steps {
-                        echo "On Branch B"
-                    }
-                }
+                echo "${env.RELEASE_SCOPE}"
             }
         }
     }

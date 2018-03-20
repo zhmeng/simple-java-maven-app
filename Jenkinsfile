@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        node {
+        label {
             label 'for-branch-a'
             customWorkspace 'D:\\one'
         }
-        node {
+        label {
             label 'for-branch-b'
             customWorkspace 'D:\\two'
         }

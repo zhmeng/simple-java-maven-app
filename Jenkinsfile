@@ -1,7 +1,19 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'one-label'
+            customWorkspace 'D:\\one'
+        }
+        node {
+            label 'two-label'
+            customWorkspace 'D:\\two'
+        }
+    }
     stages {
         stage('package') {
+            agent {
+                label 'one-label'
+            }
             steps {
                 script {
                     dir('xxx') {

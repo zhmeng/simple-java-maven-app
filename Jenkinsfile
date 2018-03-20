@@ -1,19 +1,21 @@
 pipeline {
     agent any
-    stage('Parallel Stage') {
-        failFast true
-        parallel {
-            stage('Branch A') {
-                agent {
-                    label "for-branch-a"
+    stages {
+        stage('Parallel Stage') {
+            failFast true
+            parallel {
+                stage('Branch A') {
+                    agent {
+                        label "for-branch-a"
+                    }
+                    steps {
+                        echo "On Branch A"
+                    }
                 }
-                steps {
-                    echo "On Branch A"
-                }
-            }
-            stage('Branch B') {
-                steps {
-                    echo "On Branch B"
+                stage('Branch B') {
+                    steps {
+                        echo "On Branch B"
+                    }
                 }
             }
         }

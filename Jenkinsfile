@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        label {
+        node {
             label 'for-branch-a'
             customWorkspace 'D:\\one'
         }
-        label {
+        node{
             label 'for-branch-b'
             customWorkspace 'D:\\two'
         }
@@ -16,6 +16,9 @@ pipeline {
         failFast true
         parallel {
             stage('Branch A') {
+                agent {
+                    label "for-branch-a"
+                }
                 steps {
                     echo "On Branch A"
                 }

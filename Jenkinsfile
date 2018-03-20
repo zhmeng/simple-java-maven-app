@@ -4,7 +4,7 @@ pipeline {
         stage('package') {
             steps {
                 script {
-                    dir('D:\\hello') {
+                    dir('xxx') {
                         echo "make hello dir"
                         bat 'dir'
                     }

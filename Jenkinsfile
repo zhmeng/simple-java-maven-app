@@ -5,8 +5,7 @@ pipeline {
             steps {
                 script {
                     dir('xxx') {
-                        echo "make hello dir"
-                        bat 'dir'
+                        bat 'git clone https:@github.com:zhmeng/simple-java-maven-app.git'
                     }
                 }
             }

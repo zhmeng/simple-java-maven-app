@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'for-branch-a'
+            customWorkspace 'D:\\one'
+        }
+    }
     stages {
         stage('Parallel Stage') {
             failFast true

@@ -1,18 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('load') {
-            steps {
-                bat 'dir'
-            }
-        }
-        stage("foo") {
+        stage('package') {
             steps {
                 script {
-                    env.RELEASE_SCOPE = input message: 'User input required', ok: 'Release!',
-                            parameters: [choice(name: 'RELEASE_SCOPE', choices: 'patch\nminor\nmajor', description: 'What is the release scope?')]
+                    dir('hello') {
+                        echo "make hello dir"
+                    }
                 }
-                echo "${env.RELEASE_SCOPE}"
             }
         }
     }

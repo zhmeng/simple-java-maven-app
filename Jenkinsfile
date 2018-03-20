@@ -1,14 +1,5 @@
 pipeline {
-    agent {
-        node {
-            label 'for-branch-a'
-            customWorkspace 'D:\\one'
-        }
-        node{
-            label 'for-branch-b'
-            customWorkspace 'D:\\two'
-        }
-    }
+    agent any
     stage('Parallel Stage') {
         failFast true
         parallel {

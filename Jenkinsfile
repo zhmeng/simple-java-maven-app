@@ -4,6 +4,7 @@ pipeline {
         stage('hello') {
             steps {
                 ws("C:\\Jenkins") {
+                    bat 'dir'
                     echo "awesome commands here instead of echo."
                 }
                 script {

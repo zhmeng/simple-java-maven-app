@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('clone front') {
             steps {
-                ws($frontWorkDir) {
+                ws("$frontWorkDir") {
                     sh 'pwd'
                 }
             }

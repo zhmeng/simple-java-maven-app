@@ -4,13 +4,12 @@ pipeline {
         frontWorkDir='/home/ilkkzm/ulopay/back'
     }
     parameters {
-        string(name: 'FRONT_DIR', defaultValue: '/home/ilkkzm/ulopay/back', description: 'fronts dir?')
+        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
     }
     stages {
         stage('clone front') {
             steps {
-                echo 'test ${params.FRONT_DIR}'
-                echo 'test ${env.frontWorkDir}'
+                echo "test ${params.PERSON}"
             }
         }
         stage('hello') {

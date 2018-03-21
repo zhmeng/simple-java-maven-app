@@ -3,10 +3,13 @@ pipeline {
     environment {
         frontWorkDir='/home/ilkkzm/ulopay/back'
     }
+    parameters {
+        string(name: 'FRONT_DIR', defaultValue: '/home/ilkkzm/ulopay/back', description: 'front's dir?')
+    }
     stages {
         stage('clone front') {
             steps {
-                ws(${env.frontWorkDir}) {
+                ws(${params.FRONT_DIR}) {
                     echo 'test env'
                 }
             }

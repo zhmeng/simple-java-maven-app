@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        backWorkDir = 'home/ilkkzm/ulopay/back'
+        backWorkDir = '/home/ilkkzm/ulopay/back'
         frontWorkDir = '/home/ilkkzm/ulopay/front'
     }
     stages {

@@ -4,14 +4,14 @@ pipeline {
         frontWorkDir='/home/ilkkzm/ulopay/back'
     }
     parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-        string(name: 'CCCC', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+        // choices are newline separated
+        choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
     }
     stages {
         stage('clone front') {
             steps {
-                echo "test ${params.PERSON}"
-                echo "test ${params.CCCC}"
+                sh "echo ${params.region}"
             }
         }
         stage('hello') {

@@ -11,9 +11,6 @@ pipeline {
                     checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
      userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/payservice/service-nplat.git']]])
                 }
-                sh '''
-                    mvn clean compile
-                '''
             }
         }
         stage('checkout front && build front && cp front to back') {

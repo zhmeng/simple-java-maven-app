@@ -7,7 +7,8 @@ pipeline {
         stage('clone front') {
             steps {
                 ws("$frontWorkDir") {
-                    sh 'pwd'
+                    checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
+     userRemoteConfigs: [[url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
                 }
             }
         }

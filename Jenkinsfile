@@ -12,6 +12,7 @@ pipeline {
         stage('clone front') {
             steps {
                 sh "echo ${params.region}"
+                echo "$frontWorkDir"
             }
         }
         stage('hello') {

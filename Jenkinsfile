@@ -16,7 +16,6 @@ pipeline {
                 }
             }
         }
-        /*
         stage('checkout front && build front && cp front to back') {
             steps {
                 ws("$frontWorkDir") {
@@ -29,7 +28,6 @@ pipeline {
                 }
             }
         }
-        */
         stage('back package') {
             steps {
                 ws("$backWorkDir") {

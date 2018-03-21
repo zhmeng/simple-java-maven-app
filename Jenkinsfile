@@ -1,9 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'docker'
+        }
+    }
     stages {
         stage('hello') {
             steps {
-                ws("C:\\Jenkins") {
+                ws("D:\\Jenkins") {
                     bat 'dir'
                     echo "awesome commands here instead of echo."
                 }

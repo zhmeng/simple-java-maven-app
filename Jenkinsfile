@@ -9,9 +9,8 @@ pipeline {
     stages {
         stage('clone front') {
             steps {
-                ws(${params.FRONT_DIR}) {
-                    echo 'test env'
-                }
+                echo 'test ${params.FRONT_DIR}'
+                echo 'test ${env.FRONT_DIR}'
             }
         }
         stage('hello') {

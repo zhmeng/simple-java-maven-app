@@ -8,7 +8,7 @@ pipeline {
             steps {
                 ws("$frontWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
-     userRemoteConfigs: [[url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
                 }
             }
         }

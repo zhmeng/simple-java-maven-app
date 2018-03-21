@@ -1,10 +1,13 @@
 pipeline {
     agent any
     environment {
+        // set back dir
         backWorkDir = '/home/ilkkzm/ulopay/back'
+        // set front dir
         frontWorkDir = '/home/ilkkzm/ulopay/front'
     }
     stages {
+        // checkout git of back 
         stage('checkout back') {
             steps {
                 ws("$backWorkDir") {
@@ -13,6 +16,7 @@ pipeline {
                 }
             }
         }
+        /*
         stage('checkout front && build front && cp front to back') {
             steps {
                 ws("$frontWorkDir") {
@@ -25,13 +29,15 @@ pipeline {
                 }
             }
         }
-        stage('hello') {
+        */
+        stage('back package') {
             steps {
-                script {
-                    echo "hello world add node."
+                ws("$backWorkDir") {
+                    npm install 
                 }
-                sh 'ls'
             }
         }
+        stage()
+        
     }
 }

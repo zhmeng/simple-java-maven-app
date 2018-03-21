@@ -5,8 +5,10 @@ pipeline {
     }
     stages {
         stage('clone front') {
-            ws($frontWorkDir) {
-                sh 'pwd'
+            steps {
+                ws($frontWorkDir) {
+                    sh 'pwd'
+                }
             }
         }
         stage('hello') {

@@ -11,6 +11,7 @@ pipeline {
         stage('clone front') {
             steps {
                 echo "test ${params.PERSON}"
+                echo "test ${params.CCCC}"
             }
         }
         stage('hello') {

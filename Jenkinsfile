@@ -22,7 +22,7 @@ pipeline {
                     checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
      userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
                     sh '''
-                        npm install
+                        npm install -d
                         npm run build
                     '''
                 }

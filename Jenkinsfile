@@ -1,12 +1,28 @@
 pipeline {
     agent any
     environment {
+		baseDir = '/home/jenkins/ulopay'
         // set back dir
-        backWorkDir = '/home/jenkins/ulopay/back'
+        backWorkDir = '$baseDir/back'
+		backWorkResourceDir = '$backWorkDir/service-front-cloud/src/main/resources/static'
         // set front dir
         frontWorkDir = '/home/jenkins/ulopay/front'
     }
     stages {
+		// print env
+		stage('print env') {
+			steps {
+				echo "$baseDir"
+				echo "$backWorkDir"
+				echo "$backWorkResourceDir"
+				echo "$frontWorkDir"
+			}
+		}
+		stage('continue?') {
+			steps {
+				echo "continue?"
+			}
+		}
         // checkout git of back 
         stage('checkout back') {
             steps {
@@ -24,6 +40,7 @@ pipeline {
                     sh '''
                         npm install -d
                         npm run build
+			rm -rf 
                     '''
                 }
             }

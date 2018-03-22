@@ -2,9 +2,9 @@ pipeline {
     agent any
     environment {
         // set back dir
-        backWorkDir = '/home/ilkkzm/ulopay/back'
+        backWorkDir = '/home/jenkins/ulopay/back'
         // set front dir
-        frontWorkDir = '/home/ilkkzm/ulopay/front'
+        frontWorkDir = '/home/jenkins/ulopay/front'
     }
     stages {
         // checkout git of back 

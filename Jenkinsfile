@@ -16,7 +16,7 @@ pipeline {
             steps {
                 ws("$backWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
-     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: '$backGit']]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: $backGit]]])
                 }
             }
         }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 ws("$frontWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
-     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: '$frontGit']]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: $frontGit]]])
                     sh '''
                         npm install -d
                         npm run build

@@ -16,6 +16,13 @@ pipeline {
         )
     }
     stages {
+        stage("Judge Bash") {
+            steps {
+                sh '''
+                exit 1
+                '''
+            }
+        }
         stage('初始化参数') {
             steps {
                 script {
@@ -40,7 +47,7 @@ pipeline {
             }
         }
         // checkout git of back 
-//        stage('checkout back') {
+//        stage('检出后端代码') {
 //            steps {
 //                ws("$backWorkDir") {
 //                    checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
@@ -48,7 +55,7 @@ pipeline {
 //                }
 //            }
 //        }
-//        stage('checkout front && build front && cp front to back') {
+//        stage('检出前端代码&&编译打包') {
 //            steps {
 //                ws("$frontWorkDir") {
 //                    checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
@@ -56,15 +63,21 @@ pipeline {
 //                    sh '''
 //                    npm install -d
 //                    npm run build
-//                    rm -rf $backWorkResourceDir
-//                    cp -r $frontWorkResourceDir $backWorkResourceDir
-//                    rm $backWorkResourceDir/../templates/index.ftl
-//                    cp -r $backWorkResourceDir/index.html $backWorkResourceDir/../templates/index.ftl
 //                    '''
 //                }
 //            }
 //        }
-//        stage('back package') {
+//        stage("拷贝前端生成文件到后端") {
+//            steps {
+//                sh '''
+//                rm -rf $backWorkResourceDir
+//                cp -r $frontWorkResourceDir $backWorkResourceDir
+//                rm $backWorkResourceDir/../templates/index.ftl
+//                cp -r $backWorkResourceDir/index.html $backWorkResourceDir/../templates/index.ftl
+//                '''
+//            }
+//        }
+//        stage('后端打包') {
 //            steps {
 //                ws("$backWorkDir") {
 //                    sh '''

@@ -3,7 +3,7 @@ pipeline {
     environment {
         baseDir = '/home/jenkins/ulopay'
         // set back dir
-        backWorkDir = '$baseDir/back'
+        backWorkDir = baseDir + '/back'
 	    backWorkResourceDir = '$backWorkDir/service-front-cloud/src/main/resources/static'
         // set front dir
         frontWorkDir = '$baseDir/front'

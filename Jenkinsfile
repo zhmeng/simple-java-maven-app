@@ -38,7 +38,7 @@ pipeline {
             steps {
                 ws("$backWorkDir") {
                     sh '''
-                    mvn install
+                    mvn clean install
                     '''
                 }
             }

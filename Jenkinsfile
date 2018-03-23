@@ -32,10 +32,10 @@ pipeline {
                     }
                 }
                 sh 'printenv'
-                input {
-                    message "参数是否初始化正常?"
-                    ok "继续"
-                }
+            }
+            input {
+                message "参数是否初始化正常?"
+                ok "继续"
             }
         }
         // checkout git of back 

@@ -3,7 +3,7 @@ pipeline {
     environment {
         // set back dir
         backWorkDir='/home/jenkins/ulopay/back'
-//	    backWorkResourceDir='/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static'
+//	    backWorkResourceDir=''
         // set front dir
         frontWorkDir='/home/jenkins/ulopay/front'
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
@@ -24,15 +24,15 @@ pipeline {
             steps {
                 script {
                     if (params.region == '公有云平台') {
-                        env.backWorkResourceDir = "cloud platform"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
                     } else if(params.region == "银行平台") {
-                        env.backWorkResourceDir = "bank platform"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
                     } else if(params.region == "运维平台") {
-                        env.backWorkResourceDir = "admin platform"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
                     } else if(params.region == "商户平台") {
-                        env.backWorkResourceDir = "mch platform"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
                     } else if(params.region == "渠道平台") {
-                        env.backWorkResourceDir = "chan platform"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
                     }
                     echo "${env.backWorkResourceDir}"
                 }
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('显示env') {
             steps {
-                echo "${env.backWorkResourceDir}"
+                echo "$backWorkResourceDir"
             }
         }
         // checkout git of back 

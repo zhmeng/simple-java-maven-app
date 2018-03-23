@@ -34,6 +34,7 @@ pipeline {
                     } else if(params.region == "渠道平台") {
                         env.backWorkResourceDir = "chan platform"
                     }
+                    echo "$backWorkResourceDir"
                 }
             }
         }

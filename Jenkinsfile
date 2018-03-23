@@ -39,7 +39,7 @@ pipeline {
         }
         stage('显示env') {
             steps {
-                sh 'echo ${env.backWorkResourceDir}'
+                echo "$backWorkResourceDir"
             }
         }
         // checkout git of back 

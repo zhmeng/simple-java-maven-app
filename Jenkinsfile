@@ -1,14 +1,14 @@
 pipeline {
     agent any
     environment {
-        baseDir = '/home/jenkins/ulopay'
         // set back dir
-        backWorkDir = baseDir + '/back'
-	    backWorkResourceDir = '$backWorkDir/service-front-cloud/src/main/resources/static'
+        backWorkDir='/home/jenkins/ulopay/back'
+	    backWorkResourceDir='/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static'
         // set front dir
-        frontWorkDir = '$baseDir/front'
-        backGit = 'http://172.17.20.231:10080/payservice/service-nplat.git'
-        frontGit = 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git'
+        frontWorkDir='/home/jenkins/ulopay/front'
+        frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
+        backGit='http://172.17.20.231:10080/payservice/service-nplat.git'
+        frontGit='http://172.17.20.231:10080/front_end/admin-ulo-cloud.git'
     }
     stages {
 		// print env
@@ -45,7 +45,11 @@ pipeline {
      userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: '$frontGit']]])
                     sh '''
                         npm install -d
-                        npm run build 
+                        npm run build
+                        rm -rf $backWorkResourceDir
+                        cp -r $frontWorkResourceDir $backWorkResourceDir
+                        rm $backWorkResourceDir/../templates/index.ftl
+                        cp -r $backWorkResourceDir/index.html $backWorkResourceDir/../templates/index.ftl
                     '''
                 }
             }
@@ -57,6 +61,5 @@ pipeline {
                 }
             }
         }
-        
     }
 }

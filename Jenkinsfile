@@ -7,6 +7,8 @@ pipeline {
 	    backWorkResourceDir = '$backWorkDir/service-front-cloud/src/main/resources/static'
         // set front dir
         frontWorkDir = '$baseDir/front'
+        backGit = 'http://172.17.20.231:10080/payservice/service-nplat.git'
+        frontGit = 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git'
     }
     stages {
 		// print env
@@ -31,7 +33,7 @@ pipeline {
             steps {
                 ws("$backWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
-     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/payservice/service-nplat.git']]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: '$backGit']]])
                 }
             }
         }
@@ -39,11 +41,10 @@ pipeline {
             steps {
                 ws("$frontWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
-     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: '$frontGit']]])
                     sh '''
                         npm install -d
-                        npm run build
-			rm -rf 
+                        npm run build 
                     '''
                 }
             }

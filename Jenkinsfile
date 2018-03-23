@@ -26,13 +26,13 @@ pipeline {
                     if (params.region == '公有云平台') {
                         env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
                     } else if(params.region == "银行平台") {
-                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-bank/src/main/resources/static"
                     } else if(params.region == "运维平台") {
-                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-admin/src/main/resources/static"
                     } else if(params.region == "商户平台") {
-                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-mch/src/main/resources/static"
                     } else if(params.region == "渠道平台") {
-                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static"
+                        env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-chan/src/main/resources/static"
                     }
                     echo "${env.backWorkResourceDir}"
                 }

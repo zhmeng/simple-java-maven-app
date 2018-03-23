@@ -7,8 +7,6 @@ pipeline {
         // set front dir
         frontWorkDir='/home/jenkins/ulopay/front'
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
-        backGit='http://172.17.20.231:10080/payservice/service-nplat.git'
-        frontGit='http://172.17.20.231:10080/front_end/admin-ulo-cloud.git'
     }
     stages {
         // checkout git of back 
@@ -16,7 +14,7 @@ pipeline {
             steps {
                 ws("$backWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
-     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: $backGit]]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/payservice/service-nplat.git']]])
                 }
             }
         }
@@ -24,7 +22,7 @@ pipeline {
             steps {
                 ws("$frontWorkDir") {
                     checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
-     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: $frontGit]]])
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
                     sh '''
                         npm install -d
                         npm run build

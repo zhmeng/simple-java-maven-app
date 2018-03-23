@@ -11,24 +11,6 @@ pipeline {
         frontGit='http://172.17.20.231:10080/front_end/admin-ulo-cloud.git'
     }
     stages {
-		// print env
-        stage('print env') {
-            steps {
-                echo "$baseDir"
-                echo "$backWorkDir"
-                echo "$backWorkResourceDir"
-                echo "$frontWorkDir"
-            }
-        }
-        stage('continue?') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
-            steps {
-                echo "continue"
-            }
-        }
         // checkout git of back 
         stage('checkout back') {
             steps {

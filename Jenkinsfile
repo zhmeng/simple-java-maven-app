@@ -34,13 +34,13 @@ pipeline {
                     } else if(params.region == "渠道平台") {
                         env.backWorkResourceDir = "chan platform"
                     }
-                    echo "$backWorkResourceDir"
+                    echo "${env.backWorkResourceDir}"
                 }
             }
         }
         stage('显示env') {
             steps {
-                echo "$backWorkResourceDir"
+                echo "${env.backWorkResourceDir}"
             }
         }
         // checkout git of back 

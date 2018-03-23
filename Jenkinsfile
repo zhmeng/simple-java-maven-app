@@ -26,6 +26,7 @@ pipeline {
                 ok "Yes, we should."
             }
             steps {
+                echo "continue"
             }
         }
         // checkout git of back 

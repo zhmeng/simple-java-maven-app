@@ -21,11 +21,11 @@ pipeline {
             }
         }
         stage('continue?') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
             steps {
-                input {
-                    message "Should we continue?"
-                    ok "Yes, we should."
-                }
             }
         }
         // checkout git of back 

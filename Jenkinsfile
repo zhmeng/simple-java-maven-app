@@ -3,7 +3,7 @@ pipeline {
     environment {
         // set back dir
         backWorkDir='/home/jenkins/ulopay/back'
-	    backWorkResourceDir='/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static'
+//	    backWorkResourceDir='/home/jenkins/ulopay/back/service-front-cloud/src/main/resources/static'
         // set front dir
         frontWorkDir='/home/jenkins/ulopay/front'
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'

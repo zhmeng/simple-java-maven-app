@@ -16,11 +16,7 @@ pipeline {
         )
     }
     stages {
-        stage('continue?') {
-            input {
-                message "Should we continue?"
-                ok "Yes, we should."
-            }
+        stage('初始化参数') {
             steps {
                 script {
                     if (params.region == '公有云平台') {
@@ -34,13 +30,8 @@ pipeline {
                     } else if(params.region == "渠道平台") {
                         env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-chan/src/main/resources/static"
                     }
-                    echo "${env.backWorkResourceDir}"
                 }
-            }
-        }
-        stage('显示env') {
-            steps {
-                echo "$backWorkResourceDir"
+                printenv
             }
         }
         // checkout git of back 

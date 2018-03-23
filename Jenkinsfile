@@ -31,11 +31,12 @@ pipeline {
                         env.backWorkResourceDir = "/home/jenkins/ulopay/back/service-front-chan/src/main/resources/static"
                     }
                 }
-                sh 'printenv'
-            }
-            input {
-                message "参数是否初始化正常?"
-                ok "继续"
+                sh '''
+                echo $backWorkDir
+                echo $backWorkResourceDir
+                echo $frontWorkDir
+                echo $frontWorkResourceDir
+                '''
             }
         }
         // checkout git of back 

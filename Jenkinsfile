@@ -19,7 +19,7 @@ pipeline {
         stage("Judge Bash") {
             steps {
                 sh '''
-                exit 1
+                exit 0
                 '''
             }
         }

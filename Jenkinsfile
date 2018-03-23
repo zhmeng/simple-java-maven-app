@@ -1,31 +1,31 @@
 pipeline {
     agent any
     environment {
-	baseDir = '/home/jenkins/ulopay'
+        baseDir = '/home/jenkins/ulopay'
         // set back dir
         backWorkDir = '$baseDir/back'
-	backWorkResourceDir = '$backWorkDir/service-front-cloud/src/main/resources/static'
+	    backWorkResourceDir = '$backWorkDir/service-front-cloud/src/main/resources/static'
         // set front dir
-        frontWorkDir = '/home/jenkins/ulopay/front'
+        frontWorkDir = '$baseDir/front'
     }
     stages {
 		// print env
-	stage('print env') {
-		steps {
-			echo "$baseDir"
-			echo "$backWorkDir"
-			echo "$backWorkResourceDir"
-			echo "$frontWorkDir"
-		}
-	}
-	stage('continue?') {
-		steps {
-			input {
-		                message "Should we continue?"
-               			ok "Yes, we should."
-                	}
-            	}
-	}
+        stage('print env') {
+            steps {
+                echo "$baseDir"
+                echo "$backWorkDir"
+                echo "$backWorkResourceDir"
+                echo "$frontWorkDir"
+            }
+        }
+        stage('continue?') {
+            steps {
+                input {
+                    message "Should we continue?"
+                    ok "Yes, we should."
+                }
+            }
+        }
         // checkout git of back 
         stage('checkout back') {
             steps {

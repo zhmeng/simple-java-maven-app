@@ -9,7 +9,7 @@ pipeline {
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
     }
     parameters {
-        choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
+        choice(choices: '公有云平台\n银行平台\n运维平台\n商户平台\n渠道平台', description: '部署平台?', name: 'region')
     }
     stages {
         stage('请选择?') {

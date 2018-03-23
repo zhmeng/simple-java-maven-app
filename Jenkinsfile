@@ -9,16 +9,37 @@ pipeline {
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
     }
     parameters {
-        choice(choices: '公有云平台\n银行平台\n运维平台\n商户平台\n渠道平台', description: '部署平台?', name: 'region')
+        choice(
+            choices: '公有云平台\n银行平台\n运维平台\n商户平台\n渠道平台',
+            description: '请选择部署平台?',
+            name: 'region'
+        )
     }
     stages {
-        stage('请选择?') {
+        stage('continue?') {
             input {
                 message "Should we continue?"
                 ok "Yes, we should."
             }
             steps {
-                echo "Hello, ${params.region}."
+                script {
+                    if (params.region == '公有云平台') {
+                        env.backWorkResourceDir = "cloud platform"
+                    } else if(params.region == "银行平台") {
+                        env.backWorkResourceDir = "bank platform"
+                    } else if(params.region == "运维平台") {
+                        env.backWorkResourceDir = "admin platform"
+                    } else if(params.region == "商户平台") {
+                        env.backWorkResourceDir = "mch platform"
+                    } else if(params.region == "渠道平台") {
+                        env.backWorkResourceDir = "chan platform"
+                    }
+                }
+            }
+        }
+        stage('显示env') {
+            steps {
+                sh 'echo ${env.backWorkResourceDir}'
             }
         }
         // checkout git of back 

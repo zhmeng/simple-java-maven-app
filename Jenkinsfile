@@ -8,7 +8,19 @@ pipeline {
         frontWorkDir='/home/jenkins/ulopay/front'
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
     }
+    parameters {
+        choice(choices: 'US-EAST-1\nUS-WEST-2', description: 'What AWS region?', name: 'region')
+    }
     stages {
+        stage('请选择?') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+            }
+            steps {
+                echo "Hello, ${params.region}."
+            }
+        }
         // checkout git of back 
 //        stage('checkout back') {
 //            steps {
@@ -34,14 +46,14 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('back package') {
-            steps {
-                ws("$backWorkDir") {
-                    sh '''
-                    mvn clean install
-                    '''
-                }
-            }
-        }
+//        stage('back package') {
+//            steps {
+//                ws("$backWorkDir") {
+//                    sh '''
+//                    mvn clean install
+//                    '''
+//                }
+//            }
+//        }
     }
 }

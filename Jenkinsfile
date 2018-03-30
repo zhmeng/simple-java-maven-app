@@ -16,13 +16,6 @@ pipeline {
         )
     }
     stages {
-        stage("Judge Bash") {
-            steps {
-                sh '''
-                exit -1
-                '''
-            }
-        }
         stage('初始化参数') {
             steps {
                 script {

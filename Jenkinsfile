@@ -19,7 +19,7 @@ pipeline {
         stage("Judge Bash") {
             steps {
                 sh '''
-                exit 0
+                exit -1
                 '''
             }
         }
@@ -46,45 +46,45 @@ pipeline {
                 '''
             }
         }
-        // checkout git of back 
-//        stage('检出后端代码') {
-//            steps {
-//                ws("$backWorkDir") {
-//                    checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
-//     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/payservice/service-nplat.git']]])
-//                }
-//            }
-//        }
-//        stage('检出前端代码&&编译打包') {
-//            steps {
-//                ws("$frontWorkDir") {
-//                    checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
-//        userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
-//                    sh '''
-//                    npm install -d
-//                    npm run build
-//                    '''
-//                }
-//            }
-//        }
-//        stage("拷贝前端生成文件到后端") {
-//            steps {
-//                sh '''
-//                rm -rf $backWorkResourceDir
-//                cp -r $frontWorkResourceDir $backWorkResourceDir
-//                rm $backWorkResourceDir/../templates/index.ftl
-//                cp -r $backWorkResourceDir/index.html $backWorkResourceDir/../templates/index.ftl
-//                '''
-//            }
-//        }
-//        stage('后端打包') {
-//            steps {
-//                ws("$backWorkDir") {
-//                    sh '''
-//                    mvn clean install
-//                    '''
-//                }
-//            }
-//        }
+         checkout git of back
+        stage('检出后端代码') {
+            steps {
+                ws("$backWorkDir") {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/developer-nplat']],
+     userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/payservice/service-nplat.git']]])
+                }
+            }
+        }
+        stage('检出前端代码&&编译打包') {
+            steps {
+                ws("$frontWorkDir") {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/admin-ulo-cloud-dev']],
+        userRemoteConfigs: [[credentialsId: 'gitlab-credential', url: 'http://172.17.20.231:10080/front_end/admin-ulo-cloud.git']]])
+                    sh '''
+                    npm install -d
+                    npm run build
+                    '''
+                }
+            }
+        }
+        stage("拷贝前端生成文件到后端") {
+            steps {
+                sh '''
+                rm -rf $backWorkResourceDir
+                cp -r $frontWorkResourceDir $backWorkResourceDir
+                rm $backWorkResourceDir/../templates/index.ftl
+                cp -r $backWorkResourceDir/index.html $backWorkResourceDir/../templates/index.ftl
+                '''
+            }
+        }
+        stage('后端打包') {
+            steps {
+                ws("$backWorkDir") {
+                    sh '''
+                    mvn clean install
+                    '''
+                }
+            }
+        }
     }
 }

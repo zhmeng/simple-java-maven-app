@@ -7,6 +7,7 @@ pipeline {
         // set front dir
         frontWorkDir='/home/jenkins/ulopay/front'
         frontWorkResourceDir='/home/jenkins/ulopay/front/dist'
+        saltMaster='/srv/salt'
     }
     parameters {
         choice(
@@ -70,12 +71,22 @@ pipeline {
                 '''
             }
         }
-        stage('后端打包') {
+        stage('后端打包&&拷贝至Salt-Master端') {
             steps {
                 ws("$backWorkDir") {
                     sh '''
                     mvn clean install
+                    cp -r $backWorkDir/service-main/target/service-main-2.0.zip  $saltMaster/ulopay/src/service-main-2.0.zip
                     '''
+                }
+            }
+        }
+        stage('部署运行') {
+            steps {
+                ws("$saltMaster") {
+                    sh  '''
+                   salt '*' state.sls ulopay.install
+                 '''
                 }
             }
         }

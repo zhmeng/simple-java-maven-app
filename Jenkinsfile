@@ -46,7 +46,7 @@ pipeline {
                 '''
             }
         }
-         checkout git of back
+        // checkout git of back
         stage('检出后端代码') {
             steps {
                 ws("$backWorkDir") {
